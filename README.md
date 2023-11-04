@@ -1,4 +1,4 @@
-# Course Registration Management System - Advanced Database Management Course Project
+# Course Registration Management System
 
 ## Overview
 
@@ -12,7 +12,6 @@ Welcome to the Course Management System project for the Advanced Database Manage
 4. [Getting Started](#getting-started)
 5. [Usage](#usage)
 6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Project Description
 
@@ -56,11 +55,3 @@ The Course Management System can be used to manage student enrollment, course as
 ## Contributing
 
 Contributions to this project, such as enhancements, bug fixes, and additional features, are welcome. If you wish to contribute, please follow the guidelines outlined in the project's contributing documentation.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this project as long as you comply with the terms of the license.
-
----
-
-Thank you for participating in the Advanced Database Management course project. We hope this project enhances your understanding of database design and management in real-world applications within an academic setting.
