@@ -1,0 +1,75 @@
+_ _ _ _ Ans To The Ques No:01 _ _ _ _
+
+SELECT ename 
+FROM emp 
+WHERE hiredate < ( 
+SELECT hiredate 
+FROM emp 
+WHERE ename = 'ALLEN');   
+
+
+_ _ _ _ Ans To The Ques No:02 _ _ _ _
+
+SELECT ename 
+FROM emp 
+WHERE sal < any ( 
+SELECT sal 
+FROM emp 
+WHERE job = 'SALESMAN');
+
+
+_ _ _ _ Ans To The Ques No:03 _ _ _ _
+
+SELECT ename 
+FROM emp 
+WHERE sal < any ( 
+SELECT min(sal) 
+FROM emp 
+WHERE job = 'SALESMAN'); 
+
+
+_ _ _ _ Ans To The Ques No:04 _ _ _ _
+
+SELECT ename, deptno 
+FROM emp 
+WHERE (sal, deptno) IN ( 
+SELECT min(sal), deptno 
+FROM emp 
+GROUP BY deptno); 
+
+
+_ _ _ _ Ans To The Ques No:05 _ _ _ _
+
+SELECT ename, sal 
+FROM emp 
+WHERE sal < all ( 
+SELECT min(sal) 
+FROM emp 
+WHERE ename = 'SMITH');
+
+
+_ _ _ _ Ans To The Ques No:06 _ _ _ _
+
+i)
+
+SELECT e.ename, e.deptno, e.sal, e.mgr, e.job
+FROM emp e
+WHERE (e.deptno, e.mgr) IN (
+SELECT deptno, mgr
+FROM emp
+WHERE job = 'CLERK'
+);
+
+ii)
+
+SELECT e.ename, e.deptno, e.sal, e.mgr, e.job
+FROM emp e
+WHERE e.deptno IN (
+SELECT deptno
+FROM emp
+WHERE job = 'CLERK'
+) OR e.mgr IN (
+SELECT mgr
+FROM emp
+WHERE job = 'CLERK'
+);

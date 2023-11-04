@@ -1,0 +1,42 @@
+_ _ _ _ Class Test 10 _ _ _ _
+
+
+1. SELECT S_Name, S_CGPA, (S_CGPA - 0.5) AS CGPA_minus_0.5
+FROM Student_info;
+
+
+2. SELECT city || ', ' || country || ' (' || Country_code || ')' AS Country_info
+FROM Address;
+
+
+3. SELECT S_Name AS "Student Name", S_BloodStatus AS "Student Blood Status"
+FROM Student_info;
+
+
+4. SELECT *
+FROM Student_info
+WHERE S_Name LIKE '%o%o%';
+
+
+5. SELECT S_Name, S_CGPA
+FROM Student_info
+WHERE S_CGPA IS NULL;
+
+
+6. SELECT city, country, Country_code
+FROM Address
+ORDER BY Country_code desc;
+
+
+7. SELECT S_Name, S_CGPA, SUBSTR(S_BloodStatus, 1, 10) AS "Student Blood Status"
+FROM Student_info
+WHERE S_BloodStatus = 'Pureblood';
+
+
+8. SELECT S_Name, NVL(S_CGPA, 'Not Available') AS CGPA, NVL(S_BloodStatus, 'Not Available') AS "Blood Status"
+FROM Student_info;
+
+
+9. SELECT S_Name, S_CGPA
+FROM Student_info
+WHERE S_CGPA = (SELECT MAX(S_CGPA) FROM Student_info);

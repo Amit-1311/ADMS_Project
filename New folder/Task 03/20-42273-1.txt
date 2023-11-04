@@ -1,0 +1,107 @@
+CREATE USER Manager IDENTIFIED BY Health_Gym;
+
+GRANT UNLIMITED TABLESPACE TO Manager;
+GRANT CREATE TABLE, CREATE SEQUENCE, CREATE VIEW TO Manager;
+
+
+CREATE TABLE Trainer 
+(
+  t_id NUMBER PRIMARY KEY,
+  name VARCHAR2(100),
+  address VARCHAR2(100),
+  salary NUMBER(10,2),
+  specialty VARCHAR2(100)
+);
+
+CREATE TABLE Member 
+(
+  m_id NUMBER PRIMARY KEY,
+  name VARCHAR2(100),
+  address VARCHAR2(100),
+  bill NUMBER(10,2),
+  t_id NUMBER,
+  CONSTRAINT fk FOREIGN KEY (t_id) REFERENCES Trainer(t_id)
+);
+
+INSERT INTO Trainer (t_id, name, address, salary, specialty)
+VALUES (1, 'John Doe', '123 Main St', 5000.00, 'Weightlifting');
+
+INSERT INTO Trainer (t_id, name, address, salary, specialty)
+VALUES (2, 'Jane Smith', '456 Elm St', 4000.00, 'Yoga');
+
+INSERT INTO Trainer (t_id, name, address, salary, specialty)
+VALUES (3, 'Michael Johnson', '789 Oak St', 4500.00, 'Cardio');
+
+INSERT INTO Member (m_id, name, address, bill, t_id)
+VALUES (1, 'Alice Brown', '111 Pine St', 50.00, 1);
+
+INSERT INTO Member (m_id, name, address, bill, t_id)
+VALUES (2, 'Bob Green', '222 Cedar St', 75.00, 2);
+
+INSERT INTO Member (m_id, name, address, bill, t_id)
+VALUES (3, 'Carol Wilson', '333 Maple St', 100.00, 3);
+
+
+_ _ Ans to the ques no:- 01_ _
+
+CREATE SEQUENCE member_seq
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 67
+NOCACHE
+NOCYCLE;
+
+_ _ Ans to the ques no:- 02_ _
+
+ALTER TABLE member RENAME TO members;
+
+_ _ Ans to the ques no:- 03_ _
+
+SELECT name
+FROM members
+WHERE bill = (SELECT MAX(bill) FROM members);
+
+_ _ Ans to the ques no:- 04_ _
+
+SELECT name
+FROM members
+ORDER BY bill ASC;
+
+_ _ Ans to the ques no:- 05_ _
+
+SELECT name
+FROM members
+WHERE name LIKE 'A%';
+
+_ _ Ans to the ques no:- 06_ _
+
+SELECT t.name AS trainer_name, t.specialty, m.name AS member_name
+FROM trainer t
+JOIN members m ON t.t_id = m.t_id
+WHERE t.t_id = 3;
+
+_ _ Ans to the ques no:- 07_ _
+
+SELECT m.name AS member_name, m.address
+FROM members m
+JOIN trainer t ON t.t_id = m.t_id
+WHERE t.name = 'Prioty';
+
+_ _ Ans to the ques no:- 08_ _
+
+CREATE VIEW trainer_vw AS
+SELECT t_id, name, specialty
+FROM trainer;
+
+_ _ Ans to the ques no:- 09_ _
+
+SELECT name, specialty
+FROM trainer_vw;
+
+_ _ Ans to the ques no:- 10_ _
+
+CREATE VIEW Info AS
+SELECT t.name AS Trainer, t.specialty AS Specialty, m.name AS Member
+FROM trainer t
+JOIN members m ON t.t_id = m.t_id;
+

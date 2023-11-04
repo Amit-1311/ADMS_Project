@@ -1,0 +1,113 @@
+_ _ _ _ Create Table For House _ _ _ _
+
+
+CREATE TABLE House (
+  H_Id    INT PRIMARY KEY,
+  H_Name  VARCHAR(40)
+);
+
+
+_ _ _ _ Create Table For Student _ _ _ _
+
+
+CREATE TABLE Student (
+  S_Id    INT PRIMARY KEY,
+  S_Name  VARCHAR(40),
+  H_No    INT,
+  FOREIGN KEY (H_No) REFERENCES House(H_Id)
+);
+
+
+_ _ _ _ Insert Values Into House Table _ _ _ _
+
+INSERT INTO House (H_Id, H_Name) VALUES ('11', 'Gryffindor');
+
+INSERT INTO House (H_Id, H_Name) VALUES ('22', 'Hufflepuf');
+
+INSERT INTO House (H_Id, H_Name) VALUES ('33', 'Ravenclaw');
+
+INSERT INTO House (H_Id, H_Name) VALUES ('44', 'Slytherin');
+
+INSERT INTO House (H_Id, H_Name) VALUES ('55', 'Harry');
+
+
+_ _ _ _ Insert Values Into Student Table _ _ _ _
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('2', 'Harry', '11');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('7', 'Ron', '11');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('12', 'Hannah', '22');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('17', 'Cedric', '22');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('22', 'Cho', '33');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('27', 'Luna', '33');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES ('32', 'Draco', '44');
+
+INSERT INTO Student (S_Id, S_Name, H_No) VALUES('37', 'Goyle', '44');
+
+
+
+
+_ _ _ _ Ans To The Ques No:01 _ _ _ _
+
+Create a sequence:
+
+CREATE SEQUENCE student_seq
+INCREMENT BY 5
+START WITH 2
+MAXVALUE 97
+NOCYCLE
+NOCACHE;
+
+
+Assign values to S_Id using the sequence:
+
+UPDATE Student
+SET S_Id = student_seq.NEXTVAL;
+
+
+_ _ _ _ Ans To The Ques No:02 _ _ _ _
+
+CREATE INDEX index_student_sid ON Student (S_Id);
+
+CREATE INDEX index_student_sname ON Student (S_Name);
+
+
+_ _ _ _ Ans To The Ques No:03 _ _ _ _
+
+SELECT * FROM Student WHERE S_Id > (
+SELECT S_Id
+FROM Student
+WHERE S_Name = 'Cedric'
+);
+
+
+_ _ _ _ Ans To The Ques No:04 _ _ _ _
+
+SELECT St.S_Name, H.H_Name 
+FROM Student St
+JOIN House H ON St.H_No = H.H_Id;
+
+
+_ _ _ _ Ans To The Ques No:05 _ _ _ _
+
+CREATE VIEW StudentNames AS SELECT S_Name FROM Student;
+
+
+_ _ _ _ Ans To The Ques No:06 _ _ _ _
+
+DROP VIEW StudentNames;
+
+
+_ _ _ _ Ans To The Ques No:07 _ _ _ _
+
+ROLLBACK;
+
+
+_ _ _ _ Ans To The Ques No:08 _ _ _ _
+
+CREATE SYNONYM StudentNamesSnym FOR StudentNames;

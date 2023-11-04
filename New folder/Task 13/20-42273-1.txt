@@ -1,0 +1,64 @@
+_ _ _ _ Ans To The Ques No:01 _ _ _ _
+
+DECLARE
+    a NUMBER := 1;
+    emp_sal NUMBER;
+BEGIN
+    LOOP
+    EXIT WHEN a > 3;
+    SELECT sal INTO emp_sal FROM emp WHERE ename = 'JONES';
+    DBMS_OUTPUT.PUT_LINE('Salary of employee JONES: ' || emp_sal);
+    a := a + 1;
+    END LOOP;
+END;  
+
+
+_ _ _ _ Ans To The Ques No:02 _ _ _ _
+
+DECLARE
+    b NUMBER := 1;
+    emp_sal NUMBER;
+BEGIN
+    WHILE b <= 3 LOOP
+    SELECT sal INTO emp_sal FROM emp WHERE ename = 'JONES';
+    DBMS_OUTPUT.PUT_LINE('The salary of employee JONES: ' || emp_sal);
+    b := b + 1;
+    END LOOP;
+END;
+
+
+_ _ _ _ Ans To The Ques No:03 _ _ _ _
+
+DECLARE
+    emp_sal NUMBER;
+BEGIN
+    FOR counter IN 1..3 LOOP
+    SELECT sal INTO emp_sal FROM emp WHERE ename = 'JONES';
+    DBMS_OUTPUT.PUT_LINE('The salary of employee JONES: ' || emp_sal);
+    END LOOP;
+END;
+
+
+_ _ _ _ Ans To The Ques No:04 _ _ _ _
+
+CREATE OR REPLACE FUNCTION total_departments
+RETURN NUMBER
+IS
+    t_dept NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO t_dept FROM dept;
+    RETURN t_dept;
+END; 
+
+
+_ _ _ _ Ans To The Ques No:05 _ _ _ _
+
+CREATE OR REPLACE PROCEDURE update_salary_Allen 
+IS
+BEGIN
+    UPDATE emp SET sal = 100 WHERE ename = 'ALLEN';
+    DBMS_OUTPUT.PUT_LINE('Update the salary of employee Allen to 100');
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Updating salary error');
+END;

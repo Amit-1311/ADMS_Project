@@ -1,0 +1,69 @@
+_ _ _ _ Ans To The Ques No:01 _ _ _ _
+
+CREATE TABLE Department (
+D_ID INT,
+D_NAME VARCHAR(40)
+);
+
+INSERT INTO Department (D_ID, D_NAME) VALUES ('1', 'CS');
+
+INSERT INTO Department (D_ID, D_NAME) VALUES ('2', 'EEE');
+
+INSERT INTO Department (D_ID, D_NAME) VALUES ('3', 'BBA');
+
+INSERT INTO Department (D_ID, D_NAME) VALUES ('4', 'LAW');
+
+INSERT INTO Department (D_ID, D_NAME) VALUES ('5', 'ENGLISH');
+
+
+CREATE TABLE Teacher (
+T_ID INT PRIMARY KEY,
+T_NAME VARCHAR(50),
+SKILL VARCHAR(50),
+D_ID INT,
+FOREIGN KEY (D) REFERENCES Department(D_ID)
+);
+
+INSERT INTO Teacher (T_ID, T_NAME, SKILL, D_ID) VALUES ('11', 'Sam', 'C', '1');
+
+INSERT INTO Teacher (T_ID, T_NAME, SKILL, D_ID) VALUES ('22', 'Sheldon', 'Finance', '3');
+
+INSERT INTO Teacher (T_ID, T_NAME, SKILL, D_ID) VALUES ('33', 'Oliver', 'Circuits', '2');
+
+INSERT INTO Teacher (T_ID, T_NAME, SKILL, D_ID) VALUES ('44', 'Emma', 'Criminology', '4');
+
+INSERT INTO Teacher (T_ID, T_NAME, SKILL, D_ID) VALUES ('55', 'Harry', 'Poetry', '5');
+
+
+_ _ _ _ Ans To The Ques No:02 _ _ _ _
+
+CREATE ROLE Director;
+CREATE ROLE Head;
+CREATE ROLE Teacher;
+
+GRANT ALL PRIVILEGES TO Director;
+
+GRANT UPDATE, SELECT ON Department TO Head;
+GRANT UPDATE, SELECT ON Teacher TO Head;
+
+GRANT SELECT ON Department TO Teacher;
+GRANT SELECT ON Teacher TO Teacher;
+
+CREATE USER Sam IDENTIFIED BY dean;
+GRANT Director TO Sam;
+
+CREATE USER Sheldon IDENTIFIED BY amy;
+GRANT Head TO Sheldon;
+
+CREATE USER Oliver IDENTIFIED BY twist;
+CREATE USER Emma IDENTIFIED BY henry;
+CREATE USER Harry IDENTIFIED BY ginny;
+GRANT Teacher TO Oliver, Emma, Harry;
+
+
+_ _ _ _ Ans To The Ques No:03 _ _ _ _
+
+CREATE VIEW EmployeeDepartmentView AS
+SELECT T.T_NAME AS EmployeeName, D.D_NAME AS DepartmentName
+FROM Teacher T
+JOIN Department D ON T.D_ID = D.D_ID;

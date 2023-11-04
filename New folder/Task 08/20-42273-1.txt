@@ -1,0 +1,74 @@
+_ _ _ _ Ans To The Ques No:01 _ _ _ _
+
+SELECT emp.ename 
+FROM emp,dept 
+WHERE emp.deptno=dept.deptno and dept.loc='BOSTON'; 
+
+
+_ _ _ _ Ans To The Ques No:02 _ _ _ _
+
+SELECT e.ename 
+FROM emp e,emp m 
+WHERE m.empno=e.mgr and e.hiredate>m.hiredate; 
+
+
+_ _ _ _ Ans To The Ques No:03 _ _ _ _
+
+SELECT employer.ename,manager.ename AS MANAGER 
+FROM emp employer, emp manager 
+WHERE worker.mgr = manager.empno(+);
+
+
+_ _ _ _ Ans To The Ques No:04 _ _ _ _
+
+SELECT e.ename, s.grade  
+FROM emp e,salgrade s  
+WHERE e.sal  
+BETWEEN s.losal AND s.hisal;
+
+
+_ _ _ _ Ans To The Ques No:05 _ _ _ _
+
+SELECT emp.ename,emp.deptno,dept.dname,dept.loc 
+FROM emp,dept 
+WHERE emp.deptno=dept.deptno;
+
+
+_ _ _ _ Ans To The Ques No:06 _ _ _ _
+
+Select branch_name,b.loan_number,customer_name 
+FROM loan 
+LEFT OUTER JOIN borrower b 
+ON (loan.loan_number=b.loan_number);
+
+
+_ _ _ _ Ans To The Ques No:07 _ _ _ _
+
+Select ename,grade 
+FROM emp 
+CROSS JOIN salgrade;
+ 
+
+_ _ _ _ Ans To The Ques No:08 _ _ _ _
+
+Select ename,dname 
+FROM emp 
+NATURAL JOIN dept 
+WHERE deptno in ('10');
+  
+
+_ _ _ _ Ans To The Ques No:09 _ _ _ _
+
+Select ename,dname,loc 
+FROM emp 
+JOIN dept 
+USING (DEPTNO) 
+WHERE DEPTNO<>'20';
+   
+
+_ _ _ _ Ans To The Ques No:10 _ _ _ _
+
+Select ename,dname,sal 
+FROM emp e 
+JOIN dept d 
+ON (e.deptno=d.deptno);
